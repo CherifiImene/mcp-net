@@ -1,0 +1,4 @@
+variant,n_cases,statistic,p_value,significance
+mcp_net_no_connections,10,0.0,0.005859375,**
+single_path_with_connections,10,21.0,1.0,ns
+vanilla_unet,10,14.0,0.580078125,ns

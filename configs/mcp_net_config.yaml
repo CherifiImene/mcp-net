@@ -1,0 +1,55 @@
+# MCP-Net ablation study configuration
+
+model:
+  input_shape: [128, 128, 1]
+  num_classes: 4
+
+data:
+  # Point these at ROI-cropped ACDC data (Table A/B use the ROI already
+  # extracted by the image-processing pipeline, not a learned localizer).
+  data_path: "data/corrected_images/"      # trailing slash required (DataLoader does data_path + filename)
+  gt_path: "data/corrected_labels/"
+  configs_path: "data/configv2.json"  # {"train": [...], "dev": [...], "test": [...]} filename lists
+  buffer_size: 2500
+
+training:
+  epochs: 300
+  fixed_lr: 0.001          # used for Table A (architecture ablation, no cyclic schedule)
+  max_lr: 0.01             # used for Table B (snapshot ensemble, cyclic schedule peak)
+  nb_cycles: 10
+  train_batch_size: 22
+  val_batch_size: 13
+  seed: 5                  # fixes weight init, data shuffling, and augmentation RNG
+
+ablation:
+  table_a:
+    # architecture variants — trained with fixed_lr, no snapshot ensembling
+    variants: ["vanilla_unet", "mcp_net_no_connections", "full_mcp_net"]
+
+  table_b:
+    # snapshot-count sweep — all built from the SAME trained set of 10
+    # snapshots (full_mcp_net, cyclic LR); M controls how many of those
+    # snapshots are used at inference, no retraining needed per M.
+    architecture: "full_mcp_net"
+    snapshot_counts: [1, 3, 5, 10]
+    include_single_fixed_lr_baseline: true  # the non-cyclic M=1 anchor row
+
+  table_c:
+    # 2x2 factorial isolating the multi-scale pyramid from the connections
+    # mechanism. Reuses table_a's vanilla_unet/mcp_net_no_connections/
+    # full_mcp_net rows — only single_path_with_connections is new, so this
+    # table costs one extra training run on top of Table A, not four.
+    variants: ["vanilla_unet", "single_path_with_connections",
+               "mcp_net_no_connections", "full_mcp_net"]
+    # read as a 2x2: rows = {single_path, multi_scale_pyramid}, columns =
+    # {no_connections, with_connections} — see architecture.py docstring.
+
+  table_d:
+    # decoder fusion ablation: concatenation (shipped design) vs. additive
+    # skip fusion in up_pyramid.
+    variants: ["full_mcp_net", "full_mcp_net_additive_decoder"]
+    baseline: "full_mcp_net"
+
+paths:
+  save_dir: "checkpoints"
+  results_dir: "results/ablation_tables"
