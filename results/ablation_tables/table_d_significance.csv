@@ -1,2 +1,2 @@
 variant,n_cases,statistic,p_value,significance
-full_mcp_net_additive_decoder,10,17.0,0.322265625,ns
+full_mcp_net_additive_decoder,10,27.0,1.0,ns

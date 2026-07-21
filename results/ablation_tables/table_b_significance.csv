@@ -1,5 +1,5 @@
 variant,n_cases,statistic,p_value,significance
-M1_cyclic,10,8.0,0.048828125,*
-M1_fixed_lr,10,14.0,0.193359375,ns
-M3_cyclic,10,6.0,0.02734375,*
-M5_cyclic,10,7.0,0.037109375,*
+M1_cyclic,10,6.0,0.02734375,*
+M1_fixed_lr,10,17.0,0.322265625,ns
+M3_cyclic,10,2.0,0.005859375,**
+M5_cyclic,10,9.0,0.064453125,ns
