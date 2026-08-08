@@ -271,19 +271,6 @@ labels = ensemble_predict(members, x)
 For per-case Dice/HD95 against ground truth, see
 [`mcpnet.evaluation.metrics.evaluate_dataset`](docs/API.md#mcpnetevaluationmetrics).
 
-## Reproducibility
-
-`mcpnet.utils.seeding.set_global_seed(seed)` fixes Python/numpy/TensorFlow RNGs *and* forces
-deterministic GPU kernels (`deterministic_ops=True` by default) — plain RNG seeding alone was
-confirmed insufficient for cross-process reproducibility (a same-seed retrain in a fresh runtime
-produced a measurably different HD95). It's already wired into `train_variant` and
-`DataLoader.__init__`; you don't need to call it yourself in normal use.
-
-A single seed makes one run reproducible but doesn't measure how much of a Dice difference
-between variants is training variance vs. a genuine architectural effect — the statistically
-rigorous version of these ablations would train each variant under 3-5 seeds. Not implemented
-here given the added compute cost; flagged in case reviewers push on it.
-
 ## License
 
 See [LICENSE](LICENSE).
