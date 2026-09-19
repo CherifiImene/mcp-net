@@ -92,3 +92,7 @@ def main():
     print(f"  --volume_path {VOLUME_PATH_OUTPUT} --list_dir {LIST_DIR_OUTPUT}")
     print("(match every other flag -- encoder, batch_size, lr, max_epochs, img_size, "
           "seed, save_path -- EXACTLY to your training command, same as the ACDC run)")
+
+
+if __name__ == "__main__":
+    main()

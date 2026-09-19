@@ -95,8 +95,9 @@ def main():
             gt4d = gt_nii.get_fdata()
 
             for phase, frame in [("ed", ed_frame), ("es", es_frame)]:
-                img_vol = img4d[:, :, :, frame - 1].astype(np.float32)  # (H, W, S), RAW intensities, no normalization
-                gt_vol = gt4d[:, :, :, frame - 1].astype(np.float32)
+                # M&Ms CSV frame indices are direct array indices, no "-1" needed
+                img_vol = img4d[:, :, :, frame].astype(np.float32)  # (H, W, S), RAW intensities, no normalization
+                gt_vol = gt4d[:, :, :, frame].astype(np.float32)
 
                 case_id = f"{patient_id}_{phase}"
                 # nnU-Net's REQUIRED naming: {case}_0000.nii.gz (4-digit channel suffix)
@@ -110,4 +111,8 @@ def main():
     print(f"Images (for nnUNetv2_predict -i): {OUTPUT_IMAGES_DIR}")
     print(f"Labels (for evaluation afterward): {OUTPUT_LABELS_DIR}")
     print(f"\nRun: nnUNetv2_predict -i {OUTPUT_IMAGES_DIR} -o <predictions_dir> -d 27 -c 2d -f 0 -tr nnUNetTrainerSeeded")
+
+
+if __name__ == "__main__":
+    main()
 

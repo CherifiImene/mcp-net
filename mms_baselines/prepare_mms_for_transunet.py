@@ -125,3 +125,7 @@ def main():
     print(f"  'MMS': {{'Dataset': ACDC_dataset, 'volume_path': '{vol_dir}', "
           f"'list_dir': '{list_dir}', 'num_classes': 4, 'z_spacing': 1}}")
 
+
+if __name__ == "__main__":
+    main()
+
