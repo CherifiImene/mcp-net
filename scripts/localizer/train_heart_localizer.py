@@ -2,7 +2,7 @@ import glob
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # to make sure the script runs correctly from the command line
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))) # to make sure the script runs correctly from the command line
 
 
 import numpy as np

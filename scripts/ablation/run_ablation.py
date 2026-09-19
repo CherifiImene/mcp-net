@@ -5,13 +5,15 @@ produced by the image-processing pipeline (a learned localizer is out of
 scope here).
 
 Usage:
-    python scripts/run_ablation.py --config configs/mcp_net_config.yaml --table A
-    python scripts/run_ablation.py --config configs/mcp_net_config.yaml --table B
-    python scripts/run_ablation.py --config configs/mcp_net_config.yaml --table all
+    python scripts/ablation/run_ablation.py --config configs/mcp_net_config.yaml --table A
+    python scripts/ablation/run_ablation.py --config configs/mcp_net_config.yaml --table B
+    python scripts/ablation/run_ablation.py --config configs/mcp_net_config.yaml --table all
 """
 
 import argparse
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # mcpnet root
 
 import numpy as np
 import pandas as pd

@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.insert(0, '.') # TransUnet root dir
-# sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, '..') # mcp-net repo root
 
 
 import nibabel as nib
@@ -13,7 +13,7 @@ from mcpnet.utils.image_corruptions import add_gaussian_noise, add_rician_noise,
 from mcpnet.utils.robustness_core import compute_mean_dice, apply_corruption
 
 # ============================== CONFIG ============================== #
-ACDC_RAW_DIR = "../data/ACDC_Segmentation"  # full-resolution, raw ACDC (training/testing subfolders)
+ACDC_RAW_DIR = "../data/ACDC/raw"  # full-resolution, raw ACDC (training/testing subfolders)
 CONFIGS_JSON = "../data/configv2.json"
 
 VIT_NAME = "R50-ViT-B_16"

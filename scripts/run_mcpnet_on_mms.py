@@ -8,17 +8,17 @@ used ONLY transiently, in-memory, during this run -- nothing extra gets
 saved to disk beyond the two prediction files per case, same footprint
 as before plus one more discrete-label file.
 
-Needs bbox_info.json (written by extract_mms_rois.py) for each case's
-bbox/orig_size/margin_px, to know where and how large to paste the
+Needs bbox_info.json (written by crop_mms_images_and_save.py) for each
+case's bbox/orig_size/margin_px, to know where and how large to paste the
 original-size prediction back.
 
 USAGE:
     python run_mcpnet_on_mms.py --config configs/mcp_net_config.yaml \
         --checkpoint checkpoints/full_mcp_net_best.h5 \
-        --mms-data-dir /content/mms_extracted_rois/data \
-        --bbox-info /content/mms_extracted_rois/bbox_info.json \
-        --output-dir-cropped /content/mms_predictions_cropped \
-        --output-dir-original /content/mms_predictions_original
+        --mms-data-dir data/M&Ms/mms_extracted_rois \
+        --bbox-info data/M&Ms/mms_extracted_rois/bbox_info.json \
+        --output-dir-cropped data/full_mcpnet/full_mcp_net_mms_cropped \
+        --output-dir-original data/full_mcpnet/full_mcp_net_mms_original
 Run from the repo root so `mcpnet` is importable.
 """
 
@@ -142,8 +142,8 @@ if __name__ == "__main__":
     parser.add_argument("--checkpoint", type=str, default="checkpoints/full_mcp_net_best.h5")
     parser.add_argument("--mms-data-dir", type=str, required=True)
     parser.add_argument("--bbox-info", type=str, required=True)
-    parser.add_argument("--output-dir-cropped", type=str, default="results/mms_predictions_cropped")
-    parser.add_argument("--output-dir-original", type=str, default="results/mms_predictions_original")
+    parser.add_argument("--output-dir-cropped", type=str, default="data/full_mcpnet/full_mcp_net_mms_cropped")
+    parser.add_argument("--output-dir-original", type=str, default="data/full_mcpnet/full_mcp_net_mms_original")
     args = parser.parse_args()
 
     run_inference_and_save(args.config, args.checkpoint, args.mms_data_dir, args.bbox_info,

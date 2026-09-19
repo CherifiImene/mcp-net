@@ -26,7 +26,7 @@ WHAT THIS DOES:
 import json
 import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 
 import numpy as np
@@ -35,7 +35,7 @@ import pandas as pd
 from mcpnet.evaluation.metrics import evaluate_dataset, summarize
 from mcpnet.evaluation.statistical_tests import annotate_significance, compare_variants, friedman_omnibus
 
-from scripts.uncrop_mcpnet_predictions import uncrop_prediction
+from mcpnet.utils.uncrop_mcpnet_predictions import uncrop_prediction
 
 try:
     from acdc_utilities import load_nii
@@ -46,14 +46,14 @@ except ImportError:
         return img.get_fdata(), img.affine, img.header
 
 # ============================== CONFIG — EDIT THESE ============================== #
-ACDC_RAW_DIR = "/content/drive/MyDrive/PFE_CHERIFI_Livrables/Code/Training_and_data_preparation/ACDC_Datasets/ACDC_Segmentation"                    # original training/testing folders + Info.cfg
-CONFIGS_JSON = "data/configv2.json" 
+ACDC_RAW_DIR = "data/ACDC/raw"                    # original training/testing folders + Info.cfg
+CONFIGS_JSON = "data/configv2.json"
 BBOX_JSON = "data/bboxes.json"  # your saved {"patient001": {"size":..., "bboxe":...}}
 
-MCPNET_PREDICTIONS_DIR = "results/mcpnet_predictions"    # {case_id}_ed.nii.gz / _es.nii.gz, 128x128xS
-NNUNET_PREDICTIONS_DIR = "data/nnUnet/nnUNet_results"    # {patient}_frame{NN}.nii.gz (nnU-Net's own naming)
+MCPNET_PREDICTIONS_DIR = "data/full_mcpnet/full_mcp_net_acdc_predictions"    # {case_id}_ed.nii.gz / _es.nii.gz, 128x128xS
+NNUNET_PREDICTIONS_DIR = "data/nnUnet/nnunet_predictions"    # {patient}_frame{NN}.nii.gz (nnU-Net's own naming)
 TRANSUNET_PREDICTIONS_DIR = "data/transUnet/predictions/TU_ACDC224/TU_pretrain_R50-ViT-B_16_skip3_epo150_bs24_224_s5"  # {case}_pred.nii.gz
-GCASCADE_PREDICTIONS_DIR = "results/gcascade_predictions"    # {case}_pred.nii.gz 
+GCASCADE_PREDICTIONS_DIR = "data/GCASCADE/gcascade_acdc"    # {case}_pred.nii.gz
 
 RESULTS_DIR = "results/table_e_original_resolution"
 BASELINE_VARIANT = "full_mcp_net"

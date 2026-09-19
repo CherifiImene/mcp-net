@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # mcpnet root folder
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))) # mcpnet root folder
 
 import nibabel as nib
 import numpy as np
@@ -12,8 +12,8 @@ from mcpnet.utils.image_corruptions import add_gaussian_noise, add_rician_noise,
 
 # ============================== CONFIG ============================== #
 # already-cropped (128x128) ACDC files
-ACDC_CROPPED_DATA_DIR = "./data/mcpnet/cropped_images"
-ACDC_CROPPED_LABELS_DIR = "./data/mcpnet/cropped_labels"
+ACDC_CROPPED_DATA_DIR = "./data/corrected_images"
+ACDC_CROPPED_LABELS_DIR = "./data/corrected_labels"
 CONFIGS_JSON = "data/configv2.json"
 CHECKPOINT_PATH = "checkpoints/full_mcp_net_best.h5"
 

@@ -3,7 +3,7 @@ Four-model (full_mcp_net, nnU-Net, TransUNet, G-Cascade) comparison on M&Ms
 """
 import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import json
 import os
@@ -28,8 +28,8 @@ IMAGE_SUFFIX, LABEL_SUFFIX = "_sa.nii.gz", "_sa_gt.nii.gz"
 
 MCPNET_ORIGINAL_PREDICTIONS_DIR = "./data/full_mcpnet/full_mcp_net_mms_original"              # from run_mcpnet_on_mms.py, 128x128 ROI space
 NNUNET_PREDICTIONS_DIR = "./data/nnUnet/nnunet_mms"       # from nnUNetv2_predict, original resolution
-TRANSUNET_PREDICTIONS_DIR = "./data/TransUnet/transunet_mms/TU_ACDC224/TU_pretrain_R50-ViT-B_16_skip3_epo150_bs24_224_s5"  # from TransUNet test.py, original resolution
-GCASCADE_PREDICTIONS_DIR = "./data/GCascade/gcascade_mms/"
+TRANSUNET_PREDICTIONS_DIR = "./data/transUnet/transunet_mms/TU_ACDC224/TU_pretrain_R50-ViT-B_16_skip3_epo150_bs24_224_s5"  # from TransUNet test.py, original resolution
+GCASCADE_PREDICTIONS_DIR = "./data/GCASCADE/gcascade_mms/"
 
 RESULTS_DIR = "results/table_mms_comparison"
 BASELINE_VARIANT = "full_mcp_net"

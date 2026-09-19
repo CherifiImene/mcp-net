@@ -1,5 +1,6 @@
 import sys
 sys.path.insert(0, ".")  # G-CASCADE repo root
+sys.path.insert(0, "..")  # mcp-net repo root
 
 import os
 
@@ -13,7 +14,7 @@ from mcpnet.utils.image_corruptions import add_gaussian_noise, add_rician_noise,
 from mcpnet.utils.robustness_core import compute_mean_dice, apply_corruption
 
 # ============================== CONFIG ============================== #
-ACDC_RAW_DIR = "../data/ACDC_Segmentation"
+ACDC_RAW_DIR = "../data/ACDC/raw"
 CONFIGS_JSON = "../data/configv2.json"
 
 ENCODER = "PVT"
